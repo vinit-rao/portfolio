@@ -1,0 +1,74 @@
+:root {
+  --bg-void: #030303;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-main: #f4f4f4;
+  --text-dim: #888888;
+  --accent: #ff3366; /* A punchy, modern neon pink/red */
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--bg-void); color: var(--text-main); font-family: var(--font-body); }
+body { overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+.container { max-width: 1400px; margin: 0 auto; padding: 0 5vw; }
+
+/* --- FLOATING PILL NAV --- */
+.pill-nav-wrapper {
+  position: fixed;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: none; /* Let clicks pass through the wrapper */
+}
+
+.pill-nav {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  padding: 10px 20px;
+  border-radius: 100px;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  pointer-events: auto; /* Re-enable clicks for the nav itself */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.pill-logo { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: -1px; margin-right: 20px; }
+.pill-link { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); text-decoration: none; transition: color 0.3s; }
+.pill-link:hover, .pill-link.active { color: #fff; }
+
+/* --- SPATIAL TYPOGRAPHY --- */
+.hero-spatial { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: 100px; }
+.massive-title { font-family: var(--font-display); font-size: clamp(4rem, 15vw, 12rem); line-height: 0.8; letter-spacing: -0.05em; text-transform: uppercase; background: linear-gradient(180deg, #fff 0%, #555 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
+.sub-title { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 4px; max-width: 600px; line-height: 1.8; }
+
+/* --- GLASS CARDS (Projects) --- */
+.glass-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; margin: 100px 0; }
+.glass-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 24px; overflow: hidden; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s; cursor: pointer; position: relative; }
+.glass-card:hover { transform: translateY(-10px); border-color: rgba(255,255,255,0.3); }
+
+.glass-media { width: 100%; aspect-ratio: 4/5; background: #111; overflow: hidden; position: relative; }
+.glass-media img, .glass-media video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+.glass-card:hover .glass-media img, .glass-card:hover .glass-media video { transform: scale(1.05); }
+
+.glass-content { padding: 30px; position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.9)); }
+.glass-content h3 { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 5px; color: #fff; }
+.glass-content p { font-family: var(--font-body); font-size: 0.9rem; color: #ccc; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* --- SPATIAL FILTERS --- */
+.spatial-filters { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 60px; }
+.spatial-pill { padding: 10px 24px; border-radius: 100px; border: 1px solid var(--glass-border); background: transparent; color: var(--text-dim); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s; }
+.spatial-pill:hover, .spatial-pill.active { background: #fff; color: #000; border-color: #fff; }
+
+/* --- MINIMAL FOOTER --- */
+.minimal-footer { border-top: 1px solid var(--glass-border); padding: 40px 0; margin-top: 100px; text-align: center; }
+.minimal-footer p { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-dim); letter-spacing: 2px; }
