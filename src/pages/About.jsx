@@ -1,87 +1,51 @@
-import { Link } from 'react-router-dom';
-
 const About = () => {
   return (
-    <section className="full-width-section" style={{ borderTop: 'none', marginTop: '60px', marginBottom: '80px' }}>
-      <div className="container">
-        <div className="bento-grid">
-          
-          <div className="bento-item bento-bio">
-            <h2>ABOUT ME</h2>
-            <p>I am an Interactive Multimedia and Design student at Carleton University, blending cinematic visual storytelling with technical engineering. My background spans from S-Log video production and motion graphics to C# systems in Unity and physical computing with Arduino.</p>
-            <p>I specialize in bridging the gap between high-fidelity aesthetic design and functional, interactive code. Currently seeking a Summer 2026 Co-op placement where I can apply my range in multimedia design and development.</p>
-          </div>
+    <div className="container" style={{ paddingTop: '150px', minHeight: '100vh' }}>
+      
+      <header style={{ marginBottom: '80px' }}>
+        <h1 className="massive-title" style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', textAlign: 'left' }}>MULTIMEDIA<br/>ENGINEER</h1>
+        <p className="sub-title" style={{ textAlign: 'left', maxWidth: '800px', fontSize: '1rem', color: '#ccc', textTransform: 'none', letterSpacing: 'normal' }}>
+          I am an Interactive Multimedia and Design student at Carleton University, blending cinematic visual storytelling with technical engineering. My background spans from S-Log video production and motion graphics to C# systems in Unity and physical computing with Arduino. Currently seeking a Summer 2026 Co-op placement.
+        </p>
+      </header>
 
-          <div className="bento-item bento-academic">
-            <div className="bento-title">Education</div>
-            <h3>BIT, IMD</h3>
-            <p>Carleton University<br/>Algonquin College<br/>Class of 2029 // GPA 9.73/12</p>
-          </div>
-
-          <div className="bento-item bento-status">
-            <h3>Active</h3>
-            <p>Based in Ottawa, ON<br/>Summer '26 Co-op Search</p>
-          </div>
-
-          <Link to="/contact" className="bento-item bento-contact">
-            <h3>SEND A MESSAGE <i className="fas fa-arrow-right" style={{ marginLeft: '8px' }}></i></h3>
-          </Link>
-
-          <div className="bento-item bento-ticker">
-            <div className="ticker-wrap">
-              C# <span>•</span> Python <span>•</span> Java <span>•</span> Swift <span>•</span> SQL <span>•</span> HTML/CSS/JS <span>•</span> Unity <span>•</span> Unreal Engine <span>•</span> Godot <span>•</span> Django <span>•</span> After Effects <span>•</span> Premiere Pro <span>•</span> Blender <span>•</span> Figma <span>•</span> C# <span>•</span> Python <span>•</span> Java <span>•</span> Swift <span>•</span> SQL <span>•</span> HTML/CSS/JS <span>•</span> Unity <span>•</span> Unreal Engine <span>•</span> Godot <span>•</span> Django <span>•</span> After Effects <span>•</span> Premiere Pro <span>•</span> Blender <span>•</span> Figma
-            </div>
-          </div>
-
-          <div className="bento-item bento-experience">
-            <div className="bento-title">Selected Experience</div>
-            <ul className="experience-list">
-              <li>
-                <div className="exp-top">
-                  <span className="exp-role">UX/UI Designer & Motion Animator</span>
-                  <span className="exp-date">2025 — PRES</span>
-                </div>
-                <span className="exp-company">CU Hacking</span>
-              </li>
-              <li>
-                <div className="exp-top">
-                  <span className="exp-role">Multimedia Designer & Videographer</span>
-                  <span className="exp-date">2020 — PRES</span>
-                </div>
-                <span className="exp-company">Sachin Rao</span>
-              </li>
-              <li>
-                <div className="exp-top">
-                  <span className="exp-role">Freelance Video Editor</span>
-                  <span className="exp-date">2024 — 2024</span>
-                </div>
-                <span className="exp-company">WhyDNA</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="bento-item bento-analog">
-            <div className="bento-title">Core Disciplines</div>
-            <div className="skill-tags">
-              <span className="skill-tag">Full-Stack Dev</span>
-              <span className="skill-tag">Game Design</span>
-              <span className="skill-tag">Motion Graphics</span>
-              <span className="skill-tag">UI/UX Layout</span>
-              <span className="skill-tag">Videography</span>
-            </div>
-            <div className="bento-title" style={{ marginTop: '10px' }}>Hardware / Analog Specs</div>
-            <ul>
-              <li>Arduino / Physical Computing</li>
-              <li>Custom Hardware Controllers</li>
-              <li>Sony Cameras (FX30, A7III, A7RIII)</li>
-              <li>Canon FTb QL (35mm Film)</li>
-              <li>YoloBox Pro (Live Streaming)</li>
-            </ul>
-          </div>
-
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
+        
+        <div className="glass-card" style={{ padding: '40px', cursor: 'default' }}>
+          <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--accent)', textTransform: 'uppercase', marginBottom: '30px', letterSpacing: '2px' }}>Experience</h3>
+          <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <li>
+              <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: '#fff' }}>CU Hacking</h4>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-dim)' }}>UX/UI Designer & Motion Animator // 2025 - PRES</p>
+            </li>
+            <li>
+              <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: '#fff' }}>Sachin Rao</h4>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-dim)' }}>Multimedia Designer & Videographer // 2020 - PRES</p>
+            </li>
+            <li>
+              <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: '#fff' }}>WhyDNA</h4>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-dim)' }}>Freelance Video Editor // 2024</p>
+            </li>
+          </ul>
         </div>
+
+        <div className="glass-card" style={{ padding: '40px', cursor: 'default' }}>
+          <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--accent)', textTransform: 'uppercase', marginBottom: '30px', letterSpacing: '2px' }}>Disciplines & Hardware</h3>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '30px' }}>
+            {['Full-Stack Dev', 'Game Design', 'Motion Graphics', 'UI/UX Layout', 'Videography'].map((skill, i) => (
+              <span key={i} style={{ padding: '8px 16px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', borderRadius: '100px', fontSize: '0.75rem', color: '#ccc' }}>{skill}</span>
+            ))}
+          </div>
+          <ul style={{ listStyle: 'none', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: '#888', lineHeight: '2' }}>
+            <li><span style={{ color: 'var(--accent)' }}>›</span> Arduino / Physical Computing</li>
+            <li><span style={{ color: 'var(--accent)' }}>›</span> Custom Hardware Controllers</li>
+            <li><span style={{ color: 'var(--accent)' }}>›</span> Sony Cameras (FX30, A7III)</li>
+            <li><span style={{ color: 'var(--accent)' }}>›</span> Canon FTb QL (35mm Film)</li>
+          </ul>
+        </div>
+
       </div>
-    </section>
+    </div>
   );
 };
 

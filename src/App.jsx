@@ -1,31 +1,24 @@
-import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import BackgroundEffects from './components/BackgroundEffects';
-import FloatingEcoBtn from './components/FloatingEcoBtn';
 
 import Home from './pages/Home';
 import ProjectsArchive from './pages/ProjectsArchive';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import StarField from './components/StarField';
 
 function App() {
-  const [isOptimized, setIsOptimized] = useState(() => {
-    return localStorage.getItem('vinit_optimized') === 'true';
-  });
-
-  useEffect(() => {
-    localStorage.setItem('vinit_optimized', isOptimized);
-  }, [isOptimized]);
-
   return (
     <Router>
-      <BackgroundEffects isOptimized={isOptimized} />
+    <StarField />
       <Navbar />
-      <FloatingEcoBtn isOptimized={isOptimized} toggleOptimization={() => setIsOptimized(!isOptimized)} />
-
+      
       <Routes>
-        <Route path="/" element={<Home isOptimized={isOptimized} />} />
+        <Route path="/" element={<Home />} />
         <Route path="/projects" element={<ProjectsArchive />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
 
       <Footer />

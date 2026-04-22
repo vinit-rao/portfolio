@@ -1,55 +1,25 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const ProjectCard = ({ project }) => {
   const videoRef = useRef(null);
 
-  const handleMouseEnter = () => {
-    if (videoRef.current) videoRef.current.play().catch(() => {});
-  };
-
-  const handleMouseLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
-  };
-
-  // THIS IS THE FIX: Forces the browser to look in the root public folder
-  const getMediaPath = (path) => {
-    if (!path) return '';
-    return path.startsWith('/') ? path : `/${path}`;
-  };
-
   return (
-    <div 
-      className="glass-card"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={() => window.open(project.link, project.linkType === 'internal' ? '_self' : '_blank')}
-    >
+    <div className="glass-card" onClick={() => project.link && window.open(project.link, '_blank')}>
       <div className="glass-media">
-        {project.video ? (
-          <>
-            <img src={getMediaPath(project.image)} alt={project.title} loading="lazy" />
-            <video 
-              ref={videoRef}
-              src={getMediaPath(project.video)} 
-              muted loop playsInline 
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-          </>
-        ) : (
-          <img src={getMediaPath(project.image)} alt={project.title} loading="lazy" />
-        )}
+        <img src={project.image} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <video ref={videoRef} src={project.video} className="card-video" muted loop playsInline 
+               onMouseEnter={(e)=>e.target.play()} onMouseLeave={(e)=>e.target.pause()} />
       </div>
       
-      <div className="glass-content">
-        <h3>{project.title}</h3>
-        <p>{project.description}</p>
-        <div style={{ marginTop: '15px', display: 'flex', gap: '8px' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '1px' }}>
-            {project.category}
-          </span>
+      <div style={{ marginTop: '20px' }}>
+        <h3 style={{ fontSize: '1.3rem', marginBottom: '8px' }}>{project.title}</h3>
+        <p style={{ marginBottom: '15px' }}>{project.description}</p>
+        
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+           <span className="project-tag" style={{ borderColor: 'var(--accent)', color: 'var(--accent)' }}>{project.category}</span>
+           {project.badges?.[0]?.split('|').map((badge, i) => (
+               <span key={i} className="project-tag">{badge.trim()}</span>
+           ))}
         </div>
       </div>
     </div>
