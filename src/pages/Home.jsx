@@ -62,7 +62,7 @@ const Home = () => {
                             </div>
                             
                             <div className="glass-card" style={{ padding: '30px' }}>
-                                <span className="card-label">TECH STACK + TOOLS</span>
+                                <span className="card-label">Tech Stack & Tools</span>
                                 <ul style={{ listStyle: 'none', color: '#888', fontSize: '0.85rem', lineHeight: '1.8' }}>
                                     <li style={{ marginBottom: '12px' }}><b style={{ color: '#fff' }}>LANGUAGES:</b> Python, Java, C++, C#, HTML, CSS, JavaScript, SQL, Swift</li>
                                     <li style={{ marginBottom: '12px' }}><b style={{ color: '#fff' }}>CREATIVE:</b> Adobe CC, Figma, Final Cut, Blender, Maya</li>
@@ -78,7 +78,6 @@ const Home = () => {
                         </div>
 
                         <div className="glass-card" style={{ padding: 0, overflow: 'hidden', height: '100%', minHeight: '400px', position: 'relative' }}>
-                            {/* FIXED IMAGE PATH HERE */}
                             <img 
                                 src="/images/herobg.jpg" 
                                 alt="Vinit Rao" 
@@ -92,8 +91,8 @@ const Home = () => {
 
                 <section style={{ paddingBottom: '100px', marginTop: '60px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
-                        <h2 style={{ fontFamily: 'var(--font-mono)', color: '#fff', fontSize: '1rem', letterSpacing: '2px' }}>FEATURED_SHOWCASE</h2>
-                        <Link to="/projects" style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: '0.8rem' }}>ALL_ARCHIVE →</Link>
+                        <h2 style={{ fontFamily: 'var(--font-mono)', color: '#fff', fontSize: '1rem', letterSpacing: '2px' }}>FEATURED PROJECTS</h2>
+                        <Link to="/projects" style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: '0.8rem' }}>ALL PROJECTS →</Link>
                     </div>
                     <div className="accordion-wrapper">
                         {featured.map((p, idx) => (
