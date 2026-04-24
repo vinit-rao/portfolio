@@ -4,6 +4,17 @@ const ProjectCard = ({ project }) => {
   const videoRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
 
+  // Maps category text to CSS class
+  const getCategoryClass = (cat) => {
+    switch(cat.toLowerCase()) {
+        case 'video': return 'tag-video';
+        case 'code': return 'tag-code';
+        case 'graphics': return 'tag-graphics';
+        case 'photos': return 'tag-photos';
+        default: return 'tag-default';
+    }
+  };
+
   return (
     <div className="glass-card" onClick={() => project.link && window.open(project.link, '_blank')} style={{ cursor: 'pointer' }}>
       <div className="glass-media" 
@@ -12,13 +23,15 @@ const ProjectCard = ({ project }) => {
         
         <img src={project.image} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={project.title} />
         
-        <video 
-            ref={videoRef} 
-            src={project.video} 
-            className="card-video" 
-            muted loop playsInline 
-            style={{ opacity: isHovered ? 1 : 0 }} 
-        />
+        {project.video && (
+          <video 
+              ref={videoRef} 
+              src={project.video} 
+              className="card-video" 
+              muted loop playsInline 
+              style={{ opacity: isHovered ? 1 : 0 }} 
+          />
+        )}
       </div>
       
       <div style={{ marginTop: '25px' }}>
@@ -29,15 +42,18 @@ const ProjectCard = ({ project }) => {
             {project.description}
         </p>
         
-        {/* FIXED TAGS: Filters out empty strings to prevent blank boxes */}
         <div style={{ marginTop: '20px', display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-           <span className="project-tag category-tag">{project.category}</span>
+           {/* Primary Colored Category Tag */}
+           <span className={`project-tag ${getCategoryClass(project.category)}`}>
+               {project.category}
+           </span>
            
+           {/* Sub-tags (White Default) */}
            {project.badges?.[0]?.split('|')
              .map(b => b.trim())
-             .filter(b => b !== '') /* This kills the empty boxes */
+             .filter(Boolean)
              .map((badge, i) => (
-               <span key={i} className="project-tag">{badge}</span>
+               <span key={i} className="project-tag tag-default">{badge}</span>
            ))}
         </div>
       </div>

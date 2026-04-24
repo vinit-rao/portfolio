@@ -17,7 +17,17 @@ const DigitalEmbers = () => {
   }, []);
 
   return (
-    <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: -5, pointerEvents: 'none', background: 'var(--bg-void)', overflow: 'hidden' }}>
+    <div style={{ 
+      position: 'fixed', 
+      top: 0, 
+      left: 0, 
+      width: '100vw', 
+      height: '100vh', 
+      zIndex: -5, 
+      pointerEvents: 'none', 
+      background: 'transparent', /* Let the new Obsidian CSS shine through */
+      overflow: 'hidden' 
+    }}>
       {embers.map(ember => (
         <div 
           key={ember.id} 
