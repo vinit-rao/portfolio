@@ -4,25 +4,17 @@ const Navbar = () => {
     const location = useLocation();
 
     return (
-        <div className="pill-nav-wrapper">
-            <nav className="pill-nav">
-                <Link 
-                    to="/projects" 
-                    className={`pill-link ${location.pathname === '/projects' ? 'active' : ''}`}
-                >
-                    WORK
-                </Link>
-
-                <Link to="/" className="pill-logo" style={{ margin: '0 15px' }}>
-                    VINIT RAO
-                </Link>
-
-                <Link 
-                    to="/contact" 
-                    className={`pill-link ${location.pathname === '/contact' ? 'active' : ''}`}
-                >
-                    CONTACT
-                </Link>
+        <div className="sharp-nav-wrapper">
+            <nav className="sharp-nav container">
+                <Link to="/" className="nav-brand">VINIT RAO</Link>
+                
+                <div style={{ display: 'flex', gap: '25px', alignItems: 'center' }}>
+                    <Link to="/projects" className={`nav-link ${location.pathname === '/projects' ? 'active' : ''}`}>WORK</Link>
+                    <span className="nav-divider">|</span>
+                    <Link to="/contact" className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`}>CONTACT</Link>
+                    <span className="nav-divider">|</span>
+                    <Link to="/resume" className={`nav-link ${location.pathname === '/resume' ? 'active' : ''}`}>RESUME</Link>
+                </div>
             </nav>
         </div>
     );
