@@ -78,8 +78,9 @@ const Home = () => {
                         </div>
 
                         <div className="glass-card" style={{ padding: 0, overflow: 'hidden', height: '100%', minHeight: '400px', position: 'relative' }}>
+                            {/* FIXED IMAGE PATH HERE */}
                             <img 
-                                src="public/images/herobg.jpg" 
+                                src="/images/herobg.jpg" 
                                 alt="Vinit Rao" 
                                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'grayscale(100%) contrast(1.1) brightness(0.8)', transition: 'filter 0.5s ease' }} 
                                 onMouseEnter={(e) => e.target.style.filter = 'grayscale(0%) contrast(1.1) brightness(1)'}
