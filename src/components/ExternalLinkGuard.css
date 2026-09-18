@@ -1,0 +1,29 @@
+.elg {
+    position: fixed; inset: 0; z-index: 10001;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    background: color-mix(in srgb, var(--bg) 55%, transparent);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    animation: elgFade 0.18s ease;
+}
+@keyframes elgFade { from { opacity: 0; } to { opacity: 1; } }
+
+.elg__panel {
+    width: 100%; max-width: 440px;
+    background: var(--panel);
+    border: 1px solid var(--line-strong);
+    padding: 30px;
+    animation: elgPop 0.2s var(--ease);
+}
+@keyframes elgPop { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.elg__eyebrow { color: var(--accent); letter-spacing: 0.12em; }
+.elg__lead { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em; margin: 16px 0 12px; line-height: 1.3; }
+.elg__lead strong { color: var(--accent); }
+.elg__url {
+    font-size: 0.72rem; color: var(--text-muted);
+    word-break: break-all; line-height: 1.5;
+    padding: 12px 14px; background: var(--bg-soft); border: 1px solid var(--line);
+    margin-bottom: 24px;
+}
+.elg__actions { display: flex; gap: 12px; justify-content: flex-end; }

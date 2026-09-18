@@ -137,7 +137,7 @@ const projects = [
     },
     {
         category: 'video',
-        title: 'WhyDNA Trial Edit',
+        title: 'WhyDNA Edit',
         description: 'Trial edit for YouTuber "WhyDNA" using provided footage and assets.',
         longDescription: 'A trial edit made for YouTuber "WhyDNA" using their provided footage and assets — a chance to match an existing channel\'s tone and pacing in Premiere Pro with After Effects accents.',
         link: 'https://www.youtube.com/watch?v=r1J8bAHEH4U',
@@ -205,7 +205,6 @@ const projects = [
         video: 'videos/project_22.mp4',
         image: 'images/project_22.jpg',
         badges: ['| C# | Unity | Blender | School |'],
-        featured: true,
         sections: [
             { heading: 'The Loop', body: 'Catch the good acorns, avoid the spiky ones — a simple arcade loop that ramps up as you go.' },
             { heading: 'Built With', body: 'Gameplay built in Unity with C#, and the 3D assets created in Blender.' },
@@ -558,7 +557,6 @@ const projects = [
         video: 'videos/project_28.mp4',
         image: 'images/project_28.jpg',
         badges: ['| Final Cut | Personal |'],
-        featured: true,
     },
 ];
 

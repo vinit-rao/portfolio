@@ -1,0 +1,148 @@
+/* ============================================================
+   Live 3D printer panel — Cutting Room styling
+   (sharp edges, hairline borders, mono labels, REC-red "live")
+   ============================================================ */
+
+.printer { margin: 8px 0 64px; }
+
+.printer__head { margin-bottom: 30px; }
+.printer__head > .mono {
+    display: block;
+    color: var(--text-faint);
+    letter-spacing: 0.16em; text-transform: uppercase; font-size: 0.72rem;
+    margin-bottom: 12px;
+}
+.printer__title { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+.printer__sub {
+    margin-top: 14px;
+    color: var(--text-muted);
+    font-size: 0.96rem; line-height: 1.6;
+    max-width: 56ch;
+}
+
+/* webcam (wider) + status (narrower), stacked on small screens */
+.printer__grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+@media (min-width: 820px) {
+    .printer__grid { grid-template-columns: 3fr 2fr; align-items: stretch; }
+}
+
+/* ---- shared live/offline status dot ---- */
+.plive-dot {
+    width: 8px; height: 8px; flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--text-faint);
+}
+.plive-dot[data-state="live"]    { background: var(--accent); }
+.plive-dot[data-state="printing"]{ background: var(--accent); }
+.plive-dot[data-state="idle"]    { background: var(--text); }
+.plive-dot[data-state="offline"] { background: var(--text-faint); }
+.plive-dot[data-state="live"] { animation: plive-pulse 2.4s var(--ease) infinite; }
+
+@keyframes plive-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .plive-dot[data-state="live"] { animation: none; }
+}
+
+/* ---- webcam ---- */
+.printer-cam__header {
+    display: flex; align-items: center; gap: 9px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.72rem;
+    margin-bottom: 12px;
+}
+.printer-cam__frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #0b0b0b;
+    border: 1px solid var(--line);
+    overflow: hidden;
+}
+.printer-cam__frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.printer-cam__fallback {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: #cfcfc7; font-size: 0.8rem; letter-spacing: 0.04em;
+    background:
+        repeating-linear-gradient(45deg, transparent 0 16px, rgba(255,255,255,0.03) 16px 17px),
+        #0b0b0b;
+}
+
+/* ---- status card ---- */
+.pstat {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    padding: 18px 20px;
+    display: flex; flex-direction: column; gap: 14px;
+}
+.pstat__head {
+    display: flex; align-items: center; gap: 9px;
+    letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.72rem;
+    color: var(--text);
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+}
+.pstat__state { font-weight: 500; }
+.pstat__muted { color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; }
+.pstat__file {
+    color: var(--text-faint); font-size: 0.72rem;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* live / offline badge */
+.pbadge {
+    font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 2px 8px; border: 1px solid var(--line);
+    margin-right: auto;
+}
+.pbadge.is-live { color: #fff; background: var(--accent); border-color: var(--accent); }
+.pbadge.is-off  { color: var(--text-faint); }
+
+/* progress ring + times */
+.pstat__body { display: flex; align-items: center; gap: 20px; }
+.pring { width: 88px; height: 88px; flex-shrink: 0; }
+.pring__track { fill: none; stroke: var(--line); stroke-width: 6; }
+.pring__bar {
+    fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round;
+    transition: stroke-dashoffset 0.6s var(--ease);
+}
+.pring__pct { fill: var(--text); font-family: var(--sans); font-weight: 700; font-size: 17px; }
+
+.pstat__times { display: flex; flex-direction: column; gap: 12px; }
+.pstat__time { display: flex; flex-direction: column; gap: 3px; }
+.pstat__time dt {
+    color: var(--text-faint); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+}
+.pstat__time dd { color: var(--text); font-size: 1.02rem; font-weight: 500; }
+
+/* temperature gauges */
+.pstat__gauges {
+    display: flex; flex-direction: column; gap: 14px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+}
+.pgauge { display: flex; flex-direction: column; gap: 7px; }
+.pgauge__top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 0.72rem;
+}
+.pgauge__label { color: var(--text-faint); letter-spacing: 0.14em; text-transform: uppercase; }
+.pgauge__val { color: var(--text); }
+.pgauge__track {
+    position: relative; height: 6px;
+    background: var(--bg-soft); border: 1px solid var(--line);
+    overflow: hidden;
+}
+.pgauge__fill {
+    position: absolute; inset: 0 auto 0 0; height: 100%;
+    background: var(--text-muted);
+    transition: width 0.6s var(--ease), background 0.3s ease;
+}
+.pgauge__fill[data-at="true"] { background: var(--accent); }
+.pgauge__tick {
+    position: absolute; top: -2px; bottom: -2px; width: 2px;
+    background: var(--text);
+    transform: translateX(-1px);
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -205 1001 1010">
+  <style>
+    :root { --c: #16150F; }
+    @media (prefers-color-scheme: dark) { :root { --c: #F1EAE2; } }
+    .s { fill: var(--c); }
+  </style>
+  <path class="s" d="M0 0L400 600H0.000330749L0 0Z" />
+  <path class="s" d="M1000 599.999L600 399.999H1000L1000 599.999Z" />
+  <rect class="s" x="400" y="0.000976562" width="200" height="600" />
+  <ellipse class="s" cx="801" cy="200" rx="200" ry="200" />
+</svg>

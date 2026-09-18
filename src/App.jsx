@@ -1,45 +1,26 @@
-import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Suspense, lazy } from 'react';
-import Navbar from './components/Navbar';
-import DynamicBackground from './components/DynamicBackground';
-import ScrollToTop from './components/ScrollToTop';
-import CommandPalette from './components/CommandPalette';
+import { HashRouter as Router } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
+import ExternalLinkGuard from './components/ExternalLinkGuard';
+import Canvas from './components/Canvas';
 
-// Lazy load the pages so each route only downloads its own code
-const Home = lazy(() => import('./pages/Home'));
-const ProjectsArchive = lazy(() => import('./pages/ProjectsArchive'));
-const Resume = lazy(() => import('./pages/Resume'));
-const Contact = lazy(() => import('./pages/Contact'));
-const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
-const BennysProject = lazy(() => import('./pages/projects/BennysProject'));
-
+// Bento Canvas architecture: the whole site is one full-screen canvas.
+// Canvas is ALWAYS mounted (not swapped between routes) so Framer's
+// AnimatePresence + layoutId morphs stay continuous. It reads the current
+// hash path to decide which section panel (if any) is open — "/" = grid,
+// "/work" | "/about" | "/live" | "/contact" = that panel morphed open.
 function App() {
-  return (
-    <ThemeProvider>
-      <Router>
-        {/* Global chrome — rendered once, persists across route changes */}
-        <a href="#main-content" className="skip-link">Skip to content</a>
-        <Navbar />
-        <DynamicBackground />
-        <ScrollToTop />
-        <CommandPalette />
-
-        {/* The fallback shows while the next page's code downloads (usually milliseconds) */}
-        <Suspense fallback={<div style={{ height: '100vh', background: 'var(--bg-main)' }}></div>}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<ProjectsArchive />} />
-            <Route path="/resume" element={<Resume />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/project/:slug" element={<ProjectDetail />} />
-            <Route path="/bennys-adventure" element={<BennysProject />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </Suspense>
-      </Router>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider>
+            <MotionConfig reducedMotion="user" transition={{ type: 'spring', stiffness: 260, damping: 32 }}>
+                <Router>
+                    <a href="#main" className="skip-link">Skip to content</a>
+                    <ExternalLinkGuard />
+                    <Canvas />
+                </Router>
+            </MotionConfig>
+        </ThemeProvider>
+    );
 }
 
 export default App;

@@ -2,21 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon-vr.svg" />
+    <link rel="alternate icon" type="image/png" href="/images/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vinit Rao | Portfolio</title>
-    <meta name="description" content="Vinit Rao — interactive designer and software developer. Game systems, motion graphics, custom hardware, and full-stack web." />
-    <meta name="theme-color" content="#0E0E11" />
+    <title>Vinit Rao — CG Generalist</title>
+    <meta name="description" content="Vinit Rao — CG generalist working in 3D, motion and VFX. Portfolio, reel, and archive." />
+    <meta name="theme-color" content="#F4F3EF" />
 
     <!-- Preconnect to font/icon CDNs so they start loading sooner -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <!-- Apply saved theme before paint. Dark is the default; only add the class for light. -->
-    <script>try{if(localStorage.getItem('theme')==='light')document.body.classList.add('light-theme');}catch(e){}</script>
+    <!-- Apply theme before paint: saved choice if any, else the visitor's system preference. -->
+    <script>try{var t=localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark')document.body.classList.add('dark-theme');}catch(e){}</script>
     <div id="root"></div>
 
     <script type="module" src="/src/main.jsx"></script>

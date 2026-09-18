@@ -1,51 +1,46 @@
-import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
+const SOCIALS = [
+    { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/vinit-rao' },
+    { label: 'LinkedIn', icon: 'fab fa-linkedin', url: 'https://linkedin.com/in/vinitrao1/' },
+    { label: 'YouTube', icon: 'fab fa-youtube', url: 'https://youtube.com/@OfficialVinitRao' },
+    { label: 'Instagram', icon: 'fab fa-instagram', url: 'https://instagram.com/instavinitgram' },
+];
+
 const Footer = () => {
-    const [currentTime, setCurrentTime] = useState('');
-
-    useEffect(() => {
-        const updateClock = () => {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour12: false, hour: '2-digit', minute: '2-digit' });
-            setCurrentTime(timeString);
-        };
-        updateClock();
-        const intervalId = setInterval(updateClock, 60000);
-        return () => clearInterval(intervalId);
-    }, []);
-
-    const socials = [
-        { label: 'GITHUB', url: 'https://github.com/vinit-rao' },
-        { label: 'INSTAGRAM', url: 'https://instagram.com/instavinitgram' },
-        { label: 'YOUTUBE', url: 'https://youtube.com/@OfficialVinitRao' },
-        { label: 'LINKEDIN', url: 'https://linkedin.com/in/vinitrao1/' }
-    ];
-
     return (
-        <footer className="scrap-footer-wrapper">
-            <div className="container">
-                
-                <h2 className="footer-giant-title">
-                    CONTACT ME.
-                    {/* <span></span> */}
-                </h2>
+        <footer className="foot">
+            <div className="wrap">
+                <div className="foot__cta">
+                    <span className="mono">Have something in mind?</span>
+                    <Link to="/contact" className="foot__big display">
+                        Let's build something <i className="fas fa-arrow-right"></i>
+                    </Link>
+                </div>
 
-                <div className="footer-links-grid">
-                    {socials.map((s, idx) => (
-                        <a key={idx} href={s.url} target="_blank" rel="noreferrer" className="scrap-social-link">
-                            <span>{s.label}</span>
+                <div className="foot__resumes">
+                    <div className="foot__resume-btns">
+                        <a href="/Vinit_Rao_Creative_Resume.pdf" download className="btn">
+                            <i className="fas fa-download"></i> Creative resume
                         </a>
-                    ))}
-                </div>
-
-                <div className="footer-bottom-bar">
-                    <div className="footer-stamp">
-                        LOCATION // OTTAWA, ON
+                        <a href="/Vinit_Rao_Developer_Resume.pdf" download className="btn">
+                            <i className="fas fa-download"></i> Developer resume
+                        </a>
                     </div>
-                    <span>VINIT RAO // LOCAL TIME: {currentTime}</span>
                 </div>
 
+                <div className="foot__bottom">
+                    <span className="mono">© 2026 Vinit Rao</span>
+                    <div className="foot__social">
+                        {SOCIALS.map(s => (
+                            <a key={s.label} href={s.url} target="_blank" rel="noreferrer" aria-label={s.label} className="foot__social-link">
+                                <i className={s.icon} aria-hidden="true"></i>
+                            </a>
+                        ))}
+                    </div>
+                    <span className="mono">Ottawa, CA · CG Generalist</span>
+                </div>
             </div>
         </footer>
     );
