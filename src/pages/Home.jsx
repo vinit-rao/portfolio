@@ -18,20 +18,12 @@ const NAVLINKS = [
 const REEL_VIDS = [
     'videos/blender-car-animation.mp4', // Blender Car Animation
     'videos/renault5-drift.mp4',        // Renault 5 Drift
-    'videos/project_25.mp4',            // Benny's Frozen Adventure
     'videos/project_15.mp4',            // Mad Typography Edit
-    'videos/project_34.mp4',            // WhyDNA Edit
-    'videos/project_20.mp4',            // Retro Adventure Trailer
-    'videos/project_18.mp4',            // Wedding Reception Highlight
     'videos/project_17.mp4',            // Forest Animation
-    'videos/project_23.mp4',            // Beach Diorama
     'videos/project_13.mp4',            // CU Hacking Animation
     'videos/project_32.mp4',            // Heartless Edit
-    'videos/project_1.mp4',             // Introducing RAVO
-    'videos/project_7.mp4',             // Wendy's Commercial
     'videos/project_29.mp4',            // Soupcan Test
     'videos/project_14.mp4',            // AE Exercises #1
-    'videos/project_30.mp4',            // Bubblz Animation
 ];
 
 // Two-column toolkit. `s` = simpleicons.org slug (null → falls back to the
@@ -160,10 +152,15 @@ export default function Home() {
     const withImg = useMemo(() => projects.filter(p => p.image), []);
     const featured = useMemo(() => projects.filter(p => p.featured && (p.image || p.video)), []);
 
-    const heroReel = useMemo(
-        () => REEL_VIDS.map(v => projects.find(p => p.video === v)).filter(Boolean),
-        []
-    );
+    // Shuffle the reel once per page load so the order differs every refresh.
+    const heroReel = useMemo(() => {
+        const arr = REEL_VIDS.map(v => projects.find(p => p.video === v)).filter(Boolean);
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }, []);
     const current = heroReel[heroIdx % (heroReel.length || 1)] || featured[0] || withImg[0];
 
     const bigFeat = featured[0] || withImg[0];
@@ -232,6 +229,8 @@ export default function Home() {
                             loop={heroReel.length <= 1}
                             onEnded={() => setHeroIdx(i => (i + 1) % heroReel.length)} />
                         : current?.image ? <img src={abs(current.image)} alt="" /> : null}
+                    <div className="chero__tint" aria-hidden="true"></div>
+                    <div className="chero__halftone" aria-hidden="true"></div>
                     <div className="chero__grade" aria-hidden="true"></div>
                     <div className="chero__vig" aria-hidden="true"></div>
                 </div>
@@ -259,6 +258,10 @@ export default function Home() {
                         ))}
                     </div>
                 )}
+                <a href="#work" className="chero__scroll" aria-label="Scroll to the work">
+                    <span className="mono">Scroll</span>
+                    <span className="chero__scrolltrack" aria-hidden="true"></span>
+                </a>
             </header>
 
             <main id="main">
