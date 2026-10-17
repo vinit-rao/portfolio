@@ -129,7 +129,6 @@ const projects = [
         category: 'code',
         title: "Benny's Frozen Adventure",
         description: 'Unity-made 3D game where the player tries to catch falling scoops and complete customer orders before the timer runs out.',
-        internalLink: '/bennys-adventure',
         video: 'videos/project_25.mp4',
         image: 'images/project_25-5.jpg',
         badges: ['| C# | Unity | After Effects | School |'],
