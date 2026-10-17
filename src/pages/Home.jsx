@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 import projects from '../data/projects';
 import ArchiveModal from '../components/ArchiveModal';
 import PrinterPanel from '../components/PrinterPanel';
@@ -6,6 +6,24 @@ import Logo from '../components/Logo';
 import './Home.css';
 
 const abs = (p) => (p ? (p.startsWith('/') || p.startsWith('http') ? p : `/${p}`) : null);
+
+// Loads and plays a preview clip only while it is on screen (saves bandwidth; poster shows until then).
+function LazyVideo({ src, poster }) {
+    const ref = useRef(null);
+    const [near, setNear] = useState(false);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el || typeof IntersectionObserver === 'undefined') { setNear(true); return; }
+        const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const io = new IntersectionObserver(([e]) => {
+            if (e.isIntersecting) { setNear(true); if (!reduce) el.play().catch(() => {}); }
+            else el.pause();
+        }, { rootMargin: '150px' });
+        io.observe(el);
+        return () => io.disconnect();
+    }, []);
+    return <video ref={ref} src={near ? src : undefined} poster={poster} muted loop playsInline preload="none" />;
+}
 
 const NAVLINKS = [
     { href: '#work', label: 'Work' },
@@ -277,7 +295,7 @@ export default function Home() {
                             <button key={p.title} type="button" className="spotcard" onClick={() => setActive(p)}>
                                 <div className="spotcard__media">
                                     {p.video
-                                        ? <video src={abs(p.video)} poster={abs(p.image)} muted loop autoPlay playsInline preload="metadata" />
+                                        ? <LazyVideo src={abs(p.video)} poster={abs(p.image)} />
                                         : <img src={abs(p.image)} alt={p.title} loading="lazy" />}
                                     {p.category && <span className="spotcard__badge mono">{p.category}</span>}
                                     <span className="spotcard__num display">{String(i + 1).padStart(2, '0')}</span>
