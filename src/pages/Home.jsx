@@ -410,7 +410,6 @@ export default function Home() {
                     <div className="ccontact__grid">
                         <div className="ccontact__info">
                             <a className="ccontact__mail" href="mailto:vinitrao@gmail.com">vinitrao@gmail.com</a>
-                            <a className="ccontact__line ulink" href="tel:+16135010749">613 501 0749</a>
                             <p className="ccontact__muted">Ottawa, ON · Canada — US &amp; Canadian citizen. Open to relocating anywhere in North America.</p>
                             <div className="rescards">
                                 <a className="rescard" data-res data-kind="creative" href="/Vinit_Rao_Creative_Resume.pdf" download onClick={glow}>
