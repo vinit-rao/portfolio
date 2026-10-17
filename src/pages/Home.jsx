@@ -418,7 +418,7 @@ export default function Home() {
 
                 <footer className="wrap cfoot">
                     <span className="mono cfoot__id">
-                        2027 Vinit Rao
+                        2026 Vinit Rao
                         <button className="cfoot__star" onClick={() => setPrinterPop(true)} aria-label="Secret — open the live workshop" title="✦">✦</button>
                     </span>
                     <div className="cfoot__soc mono">
