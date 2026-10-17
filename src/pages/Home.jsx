@@ -170,20 +170,22 @@ export default function Home() {
     const withImg = useMemo(() => projects.filter(p => p.image), []);
     const featured = useMemo(() => projects.filter(p => p.featured && (p.image || p.video)), []);
 
-    // Shuffle the reel once per page load so the order differs every refresh.
+    // Shuffle the reel once per page load so the order differs every refresh,
+    // but always open on the first clip (the strongest 3D piece).
     const heroReel = useMemo(() => {
         const arr = REEL_VIDS.map(v => projects.find(p => p.video === v)).filter(Boolean);
-        for (let i = arr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
+        for (let i = arr.length - 1; i > 1; i--) {
+            const j = 1 + Math.floor(Math.random() * i);
             [arr[i], arr[j]] = [arr[j], arr[i]];
         }
         return arr;
     }, []);
     const current = heroReel[heroIdx % (heroReel.length || 1)] || featured[0] || withImg[0];
 
-    const bigFeat = featured[0] || withImg[0];
-    const cuHack = useMemo(() => projects.find(p => p.title === 'CU Hacking Animation'), []);
-    const spotlight = [bigFeat, cuHack].filter(Boolean);
+    // The two big Selected Work slots lead with the 3D work.
+    const spotlight = useMemo(
+        () => ['Blender Car Animation', 'Renault 5 Drift Animation'].map(t => projects.find(p => p.title === t)).filter(Boolean),
+        []);
     const spotTitles = new Set(spotlight.map(p => p.title));
     const gridFeat = useMemo(() => [
         ...featured.filter(p => !spotTitles.has(p.title)),
